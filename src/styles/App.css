@@ -1,5 +1,9 @@
-.App {
-  text-align: center;
+input {
+  margin:1em
+}
+li {
+  background-color:#D1F2EB;
+  margin: 1em
 }
 
 .App-logo {
