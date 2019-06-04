@@ -1,28 +1,29 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import { async } from 'q';
-
+import { search } from './Utils'
 
 function GithubSearchRepo() {
   const [data, setData] = useState([]);
   const [query,setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const getData = async val => {
+    setIsLoading(true);
+    const res = await search(
+      `https://api.github.com/search/repositories?client_id=38c7c059e19a5727a298&client_secret=49498106f79f65fc73a2520087b68a40f525b3c8&q=${val}`
+    );
+    if(res) {
+      setData(res.items);
+      setIsLoading(false);
+    }
+  };
   useEffect(()=> {
       if(!query) {
         setData([]);
+        setIsLoading(false);
       }
       if(query) {
-        const fetchData = async () => {
-          setIsLoading(true);
-          const result = await axios(
-            `https://api.github.com/search/repositories?client_id=38c7c059e19a5727a298&client_secret=49498106f79f65fc73a2520087b68a40f525b3c8&q=${query}`,
-          );
-          setData(result.data.items);
-          setIsLoading(false);
-        }
-      fetchData();
-      
+        getData(query);   
       }
+
   }, [query]);
     return(
       <div>
