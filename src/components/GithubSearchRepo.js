@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { search } from './Utils'
+import { search } from '../Utils/AxiosSerach'
 
 function GithubSearchRepo() {
   const [data, setData] = useState([]);
