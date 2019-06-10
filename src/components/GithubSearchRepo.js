@@ -29,7 +29,8 @@ function GithubSearchRepo() {
       <div>
           <input 
             value={query}
-            onChange={(e) => {e.preventDefault();
+            onChange={(e) => {
+              e.preventDefault();
               setQuery(e.target.value);}}
           />
           {isLoading ? (
